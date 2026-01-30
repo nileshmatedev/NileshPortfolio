@@ -10,6 +10,7 @@ import { Footer } from "./components/Footer";
 import Plasma from "./components/Plasma";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 // Lazy load ProjectDetail component
 const ProjectDetail = lazy(() => import("./components/ProjectDetail").then(module => ({ default: module.ProjectDetail })));
@@ -92,9 +93,12 @@ function ProjectPage() {
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/project/:projectId" element={<ProjectPage />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/project/:projectId" element={<ProjectPage />} />
+      </Routes>
+      <Analytics />
+    </>
   );
 }
